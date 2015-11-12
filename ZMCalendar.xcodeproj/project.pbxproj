@@ -1,0 +1,400 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		54820EA81BF4AA890065F2D7 /* NSDate+ZMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 54820E961BF4AA890065F2D7 /* NSDate+ZMExtension.m */; };
+		54820EA91BF4AA890065F2D7 /* UIColor+ZMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 54820E981BF4AA890065F2D7 /* UIColor+ZMExtension.m */; };
+		54820EAA1BF4AA890065F2D7 /* UIView+ZMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 54820E9A1BF4AA890065F2D7 /* UIView+ZMExtension.m */; };
+		54820EAB1BF4AA890065F2D7 /* ZMDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54820E9D1BF4AA890065F2D7 /* ZMDateModel.m */; };
+		54820EAC1BF4AA890065F2D7 /* ZMImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54820E9F1BF4AA890065F2D7 /* ZMImages.xcassets */; };
+		54820EAD1BF4AA890065F2D7 /* ZMCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54820EA21BF4AA890065F2D7 /* ZMCalendarMonthView.m */; };
+		54820EAE1BF4AA890065F2D7 /* ZMDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54820EA41BF4AA890065F2D7 /* ZMDayCell.m */; };
+		54820EAF1BF4AA890065F2D7 /* ZMCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54820EA61BF4AA890065F2D7 /* ZMCalendarViewController.m */; };
+		54820EB01BF4AA890065F2D7 /* ZMCalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54820EA71BF4AA890065F2D7 /* ZMCalendarViewController.xib */; };
+		54B196331BF4A5D400ECA589 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B196301BF4A5D400ECA589 /* AppDelegate.m */; };
+		54B196341BF4A5D400ECA589 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B196321BF4A5D400ECA589 /* ViewController.m */; };
+		54B196361BF4A5F300ECA589 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54B196351BF4A5F300ECA589 /* main.m */; };
+		54B1965B1BF4A64700ECA589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54B196571BF4A64700ECA589 /* LaunchScreen.storyboard */; };
+		54B1965C1BF4A64700ECA589 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54B196591BF4A64700ECA589 /* Main.storyboard */; };
+		54B1965E1BF4A65500ECA589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54B1965D1BF4A65500ECA589 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		540ABA011BF2152200420C3C /* ZMCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZMCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54820E951BF4AA890065F2D7 /* NSDate+ZMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ZMExtension.h"; sourceTree = "<group>"; };
+		54820E961BF4AA890065F2D7 /* NSDate+ZMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ZMExtension.m"; sourceTree = "<group>"; };
+		54820E971BF4AA890065F2D7 /* UIColor+ZMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZMExtension.h"; sourceTree = "<group>"; };
+		54820E981BF4AA890065F2D7 /* UIColor+ZMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZMExtension.m"; sourceTree = "<group>"; };
+		54820E991BF4AA890065F2D7 /* UIView+ZMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZMExtension.h"; sourceTree = "<group>"; };
+		54820E9A1BF4AA890065F2D7 /* UIView+ZMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZMExtension.m"; sourceTree = "<group>"; };
+		54820E9C1BF4AA890065F2D7 /* ZMDateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMDateModel.h; sourceTree = "<group>"; };
+		54820E9D1BF4AA890065F2D7 /* ZMDateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMDateModel.m; sourceTree = "<group>"; };
+		54820E9F1BF4AA890065F2D7 /* ZMImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ZMImages.xcassets; sourceTree = "<group>"; };
+		54820EA11BF4AA890065F2D7 /* ZMCalendarMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMCalendarMonthView.h; sourceTree = "<group>"; };
+		54820EA21BF4AA890065F2D7 /* ZMCalendarMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMCalendarMonthView.m; sourceTree = "<group>"; };
+		54820EA31BF4AA890065F2D7 /* ZMDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMDayCell.h; sourceTree = "<group>"; };
+		54820EA41BF4AA890065F2D7 /* ZMDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMDayCell.m; sourceTree = "<group>"; };
+		54820EA51BF4AA890065F2D7 /* ZMCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMCalendarViewController.h; sourceTree = "<group>"; };
+		54820EA61BF4AA890065F2D7 /* ZMCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMCalendarViewController.m; sourceTree = "<group>"; };
+		54820EA71BF4AA890065F2D7 /* ZMCalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZMCalendarViewController.xib; sourceTree = "<group>"; };
+		54B1962F1BF4A5D400ECA589 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		54B196301BF4A5D400ECA589 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		54B196311BF4A5D400ECA589 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = SOURCE_ROOT; };
+		54B196321BF4A5D400ECA589 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = SOURCE_ROOT; };
+		54B196351BF4A5F300ECA589 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+		54B196581BF4A64700ECA589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		54B1965A1BF4A64700ECA589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		54B1965D1BF4A65500ECA589 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		54D120461BF4A72000051549 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		540AB9FE1BF2152200420C3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		540AB9F81BF2152200420C3C = {
+			isa = PBXGroup;
+			children = (
+				540ABA031BF2152200420C3C /* ZMCalendarExemple */,
+				540ABA021BF2152200420C3C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		540ABA021BF2152200420C3C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				540ABA011BF2152200420C3C /* ZMCalendar.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		540ABA031BF2152200420C3C /* ZMCalendarExemple */ = {
+			isa = PBXGroup;
+			children = (
+				54820E931BF4AA890065F2D7 /* Classes */,
+				54B1962F1BF4A5D400ECA589 /* AppDelegate.h */,
+				54B196301BF4A5D400ECA589 /* AppDelegate.m */,
+				54B196311BF4A5D400ECA589 /* ViewController.h */,
+				54D120461BF4A72000051549 /* Info.plist */,
+				54B196321BF4A5D400ECA589 /* ViewController.m */,
+				54B196571BF4A64700ECA589 /* LaunchScreen.storyboard */,
+				54B196591BF4A64700ECA589 /* Main.storyboard */,
+				540ABA041BF2152200420C3C /* Supporting Files */,
+			);
+			name = ZMCalendarExemple;
+			path = ZMCalendar;
+			sourceTree = "<group>";
+		};
+		540ABA041BF2152200420C3C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				54B1965D1BF4A65500ECA589 /* Assets.xcassets */,
+				54B196351BF4A5F300ECA589 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		54820E931BF4AA890065F2D7 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				54820E941BF4AA890065F2D7 /* Category */,
+				54820E9B1BF4AA890065F2D7 /* Model */,
+				54820E9E1BF4AA890065F2D7 /* Resource */,
+				54820EA01BF4AA890065F2D7 /* View */,
+				54820EA51BF4AA890065F2D7 /* ZMCalendarViewController.h */,
+				54820EA61BF4AA890065F2D7 /* ZMCalendarViewController.m */,
+				54820EA71BF4AA890065F2D7 /* ZMCalendarViewController.xib */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		54820E941BF4AA890065F2D7 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				54820E951BF4AA890065F2D7 /* NSDate+ZMExtension.h */,
+				54820E961BF4AA890065F2D7 /* NSDate+ZMExtension.m */,
+				54820E971BF4AA890065F2D7 /* UIColor+ZMExtension.h */,
+				54820E981BF4AA890065F2D7 /* UIColor+ZMExtension.m */,
+				54820E991BF4AA890065F2D7 /* UIView+ZMExtension.h */,
+				54820E9A1BF4AA890065F2D7 /* UIView+ZMExtension.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		54820E9B1BF4AA890065F2D7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				54820E9C1BF4AA890065F2D7 /* ZMDateModel.h */,
+				54820E9D1BF4AA890065F2D7 /* ZMDateModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		54820E9E1BF4AA890065F2D7 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				54820E9F1BF4AA890065F2D7 /* ZMImages.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		54820EA01BF4AA890065F2D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54820EA11BF4AA890065F2D7 /* ZMCalendarMonthView.h */,
+				54820EA21BF4AA890065F2D7 /* ZMCalendarMonthView.m */,
+				54820EA31BF4AA890065F2D7 /* ZMDayCell.h */,
+				54820EA41BF4AA890065F2D7 /* ZMDayCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		540ABA001BF2152200420C3C /* ZMCalendar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 540ABA181BF2152200420C3C /* Build configuration list for PBXNativeTarget "ZMCalendar" */;
+			buildPhases = (
+				540AB9FD1BF2152200420C3C /* Sources */,
+				540AB9FE1BF2152200420C3C /* Frameworks */,
+				540AB9FF1BF2152200420C3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZMCalendar;
+			productName = ZMCalendar;
+			productReference = 540ABA011BF2152200420C3C /* ZMCalendar.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		540AB9F91BF2152200420C3C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ZM;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "http://xLoli.Net";
+				TargetAttributes = {
+					540ABA001BF2152200420C3C = {
+						CreatedOnToolsVersion = 7.1;
+					};
+				};
+			};
+			buildConfigurationList = 540AB9FC1BF2152200420C3C /* Build configuration list for PBXProject "ZMCalendar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 540AB9F81BF2152200420C3C;
+			productRefGroup = 540ABA021BF2152200420C3C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				540ABA001BF2152200420C3C /* ZMCalendar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		540AB9FF1BF2152200420C3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54B1965C1BF4A64700ECA589 /* Main.storyboard in Resources */,
+				54B1965B1BF4A64700ECA589 /* LaunchScreen.storyboard in Resources */,
+				54820EAC1BF4AA890065F2D7 /* ZMImages.xcassets in Resources */,
+				54B1965E1BF4A65500ECA589 /* Assets.xcassets in Resources */,
+				54820EB01BF4AA890065F2D7 /* ZMCalendarViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		540AB9FD1BF2152200420C3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54820EA91BF4AA890065F2D7 /* UIColor+ZMExtension.m in Sources */,
+				54820EAB1BF4AA890065F2D7 /* ZMDateModel.m in Sources */,
+				54820EAD1BF4AA890065F2D7 /* ZMCalendarMonthView.m in Sources */,
+				54820EAA1BF4AA890065F2D7 /* UIView+ZMExtension.m in Sources */,
+				54B196341BF4A5D400ECA589 /* ViewController.m in Sources */,
+				54820EA81BF4AA890065F2D7 /* NSDate+ZMExtension.m in Sources */,
+				54820EAE1BF4AA890065F2D7 /* ZMDayCell.m in Sources */,
+				54820EAF1BF4AA890065F2D7 /* ZMCalendarViewController.m in Sources */,
+				54B196361BF4A5F300ECA589 /* main.m in Sources */,
+				54B196331BF4A5D400ECA589 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		54B196571BF4A64700ECA589 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54B196581BF4A64700ECA589 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		54B196591BF4A64700ECA589 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54B1965A1BF4A64700ECA589 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		540ABA161BF2152200420C3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		540ABA171BF2152200420C3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		540ABA191BF2152200420C3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.xloli.ZMCalendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		540ABA1A1BF2152200420C3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.xloli.ZMCalendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		540AB9FC1BF2152200420C3C /* Build configuration list for PBXProject "ZMCalendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				540ABA161BF2152200420C3C /* Debug */,
+				540ABA171BF2152200420C3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		540ABA181BF2152200420C3C /* Build configuration list for PBXNativeTarget "ZMCalendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				540ABA191BF2152200420C3C /* Debug */,
+				540ABA1A1BF2152200420C3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 540AB9F91BF2152200420C3C /* Project object */;
+}
