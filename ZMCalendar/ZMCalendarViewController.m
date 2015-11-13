@@ -270,7 +270,7 @@
 #pragma mark - ScrollView delegate
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    scrollView.userInteractionEnabled = NO;
+    scrollView.scrollEnabled = NO;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -280,7 +280,7 @@
     
     // 滚动到底反弹，不做任何处理。
     if (right == left) {
-        scrollView.userInteractionEnabled = YES;
+        scrollView.scrollEnabled = YES;
         return;
     }
     
@@ -298,7 +298,7 @@
         
         [self loadDateLabel];
         [_centerCalendarView reloadAll];
-        scrollView.userInteractionEnabled = YES;
+        scrollView.scrollEnabled = YES;
         _beforeOffset = scrollView.width;
         return;
     }
@@ -306,7 +306,7 @@
     if (![self _canPrevious:left] ||
         ![self _canNext:right]) {
         
-        scrollView.userInteractionEnabled = YES;
+        scrollView.scrollEnabled = YES;
         self.beforeOffset = scrollView.contentOffset.x;
         [self loadDateLabel];
         [self reload];
@@ -326,7 +326,7 @@
     [self loadDateLabel];
     [self calendarMonthDidChanged];
     
-    scrollView.userInteractionEnabled = YES;
+    scrollView.scrollEnabled = YES;
     self.beforeOffset = scrollView.contentOffset.x;
 }
 
