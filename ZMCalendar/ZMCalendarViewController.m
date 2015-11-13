@@ -131,13 +131,13 @@
     [self refrashCalendarData];
 }
 
-
+-(void)refrashCurrentCalendarData{
+    self.centerCalendarView.model = [ZMDateModel dateModelWithNSDate:_currentDate];
+}
 
 -(void)refrashCalendarData{
-    typeof(self)wself = self;
-
-    wself.leftCalendarView.model = [ZMDateModel dateModelWithNSDate:[_currentDate dayInThePreviousMonth]];
-    wself.rightCalendarView.model = [ZMDateModel dateModelWithNSDate:[_currentDate dayInTheFollowingMonth]];
+    self.leftCalendarView.model = [ZMDateModel dateModelWithNSDate:[_currentDate dayInThePreviousMonth]];
+    self.rightCalendarView.model = [ZMDateModel dateModelWithNSDate:[_currentDate dayInTheFollowingMonth]];
 }
 
 
@@ -204,10 +204,11 @@
 
 - (void)today{
     self.disableTodayFlag = NO;
-    [self.calendarScrollView setContentOffset:CGPointMake(_calendarScrollView.width, 0) animated:YES];
     [self removeSelectedTag];
     [self initCurrentDate];
-    [self reload];
+    [self.calendarScrollView setContentOffset:CGPointMake(_calendarScrollView.width, 0) animated:YES];
+    [self refrashCurrentCalendarData];
+    [self refrashCalendarData];
 }
 
 #pragma mark - Private
