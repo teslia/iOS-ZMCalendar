@@ -30,6 +30,7 @@
 
 @property (nonatomic,assign) NSInteger padding;
 @property (nonatomic,strong) ZMDateModel* model;
+@property (nonatomic,assign) BOOL disableToday;
 
 @property (nonatomic,assign) id <ZMCalendarMonthViewDataSource> dataSource;
 @property (nonatomic,assign) id <ZMCalendarMonthViewDelegate> delegate;
@@ -37,5 +38,6 @@
 -(instancetype)initWithFrame:(CGRect)frame dateModel:(ZMDateModel *) dateModel;
 -(void)removeAllSelected;
 -(void)reloadAll;
+-(void)initView;
 
 @end

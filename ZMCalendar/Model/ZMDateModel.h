@@ -18,7 +18,6 @@
 @property (nonatomic,assign) BOOL isSelected;
 @property (nonatomic,assign) BOOL isEventDay;
 @property (nonatomic,assign) BOOL isToday;
-@property (nonatomic,assign) BOOL disableToday;
 
 +(instancetype)dateModelWithNSDate:(NSDate *)date;
 -(instancetype)initWithYear:(NSString *)year month:(NSString *)month;

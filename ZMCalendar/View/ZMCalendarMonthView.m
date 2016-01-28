@@ -25,7 +25,6 @@
 -(instancetype)initWithFrame:(CGRect)frame dateModel:(ZMDateModel *) dateModel{
     if (self = [super initWithFrame:frame]) {
         _model = dateModel;
-        [self performSelector:@selector(initView) withObject:self afterDelay:0.1];
     }
     return self;
 }
@@ -49,16 +48,12 @@
 
 -(void)loadCalendarView{
     
-    typeof(self) wself = self;
 
-    // 清理原有数据
-    for (UIView *view in wself.dayViews) {
-        [view removeFromSuperview];
-    }
-    [wself.dayViews removeAllObjects];
+    // 检查是否已经被初始化过
+    BOOL isInited = self.dayViews.count;
     
     // 获取可用天数
-    NSDate *currentDate = [wself.model getNSDate];
+    NSDate *currentDate = [self.model getNSDate];
     NSInteger numberOfDaysInCurrentMonth = [currentDate numberOfDaysInCurrentMonth];
     // 获取上个月可用天数
     NSInteger numberOfDaysInPreviousMonth = [[currentDate dayInThePreviousMonth] numberOfDaysInCurrentMonth];
@@ -67,17 +62,25 @@
     NSInteger weeklyOrdinality = [currentDate weeklyOrdinality];
     
     NSInteger dayIndex = 0;
+    NSInteger loopIndex = 0;
     
     for (int i = 0; i < 6; i++) {
         
         for (int j = 0; j < 7; j++) {
             
-            CGRect cellFrame = CGRectMake(_cellWidth * j , _cellHeight * i, _cellWidth - _padding , _cellHeight - _padding);
-            ZMDayCell *dayCell = [[ZMDayCell alloc]initWithFrame:cellFrame];
+            ZMDayCell *dayCell;
+            if (isInited) {
+                dayCell = self.dayViews[loopIndex];
+            }else{
+                CGRect cellFrame = CGRectMake(_cellWidth * j , _cellHeight * i, _cellWidth - _padding , _cellHeight - _padding);
+                dayCell = [[ZMDayCell alloc]initWithFrame:cellFrame];
+            }
+            
+            loopIndex++;
             
             ZMDateModel *dayInfo = [[ZMDateModel alloc]init];
-            dayInfo.year = wself.model.year;
-            dayInfo.month = wself.model.month;
+            dayInfo.year = self.model.year;
+            dayInfo.month = self.model.month;
             dayInfo.weekDay = j;
             dayInfo.isInCurrentMonth = NO;
             dayInfo.isEventDay = NO;
@@ -93,10 +96,10 @@
             }else if(i == 0){
                 //上月
                 if (dayInfo.month.integerValue == 1) {
-                    dayInfo.year = [NSString stringWithFormat:@"%ld", (wself.model.year.integerValue - 1)];
+                    dayInfo.year = [NSString stringWithFormat:@"%ld", (long)(self.model.year.integerValue - 1)];
                     dayInfo.month = @"12";
                 }else{
-                    NSInteger month = wself.model.month.integerValue - 1;
+                    NSInteger month = self.model.month.integerValue - 1;
                     dayInfo.month = [NSString stringWithFormat:@"%ld", (long)month];
                 }
                 
@@ -108,10 +111,10 @@
                 NSInteger overflow = (j + i * 7) - numberOfDaysInCurrentMonth + 1;
                 
                 if (dayInfo.month.integerValue == 12) {
-                    dayInfo.year = [NSString stringWithFormat:@"%ld", (wself.model.year.integerValue + 1)];
+                    dayInfo.year = [NSString stringWithFormat:@"%ld", (long)(self.model.year.integerValue + 1)];
                     dayInfo.month = @"1";
                 }else{
-                    NSInteger month = wself.model.month.integerValue + 1;
+                    NSInteger month = self.model.month.integerValue + 1;
                     dayInfo.month = [NSString stringWithFormat:@"%ld", (long)month];
                 }
                 
@@ -120,12 +123,16 @@
             }
             
             //Load datasouce
-            [wself loadDayInfo:dayInfo dayCell:dayCell];
+            [self loadDayInfo:dayInfo dayCell:dayCell];
+            dayCell.disableToday = _disableToday;
             dayCell.model = dayInfo;
-            [dayCell addTarget:wself action:@selector(dayCellDidSelect:) forControlEvents:UIControlEventTouchUpInside];
             
-            [wself addSubview:dayCell];
-            [wself.dayViews addObject:dayCell];
+            if (!isInited) {
+                [dayCell addTarget:self action:@selector(dayCellDidSelect:) forControlEvents:UIControlEventTouchUpInside];
+                [self addSubview:dayCell];
+                [self.dayViews addObject:dayCell];
+            }
+            
         }
         
     }
@@ -145,6 +152,7 @@
     for (ZMDayCell *cell in _dayViews) {
         cell.model.isEventDay = NO;
         cell.model.isSelected = NO;
+        cell.disableToday = _disableToday;
         [self loadDayInfo:cell.model dayCell:cell];
         [cell reload];
     }
@@ -153,12 +161,6 @@
 #pragma mark - Delegate
 -(void)dayCellDidSelect:(ZMDayCell *)dayCell{
     if (self.delegate && dayCell.model.isInCurrentMonth) {
-        
-        [self removeAllSelected];
-        
-        dayCell.model.isSelected = YES;
-        [dayCell reload];
-        
         [self.delegate calendarDayDidSelected:dayCell.model dayCell:dayCell];
     }
 }

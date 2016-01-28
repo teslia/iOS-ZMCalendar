@@ -131,6 +131,8 @@
     
     //    [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
     [dateFormatter setDateFormat: @"yyyy-MM-dd"];
+    dateFormatter.locale = [NSLocale systemLocale];
+    
     
     NSDate *destDate= [dateFormatter dateFromString:dateString];
     
@@ -142,11 +144,12 @@
 - (NSString *)stringFromDate:(NSDate *)date
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [NSLocale systemLocale];
     
     //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
     
     //    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setDateFormat:@"yyyy-M-dd"];
     
     NSString *destDateString = [dateFormatter stringFromDate:date];
     
@@ -168,7 +171,7 @@
 //周日是“1”，周一是“2”...
 -(long)getWeekIntValueWithDate
 {
-    int weekIntValue;
+    long weekIntValue;
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSChineseCalendar];
     NSDateComponents *comps= [calendar components:(NSYearCalendarUnit |
@@ -199,6 +202,9 @@
 
 + (BOOL)date:(NSDate *)dateA isTheSameDayThan:(NSDate *)dateB
 {
+    if (dateA == nil || dateB == nil) {
+        return NO;
+    }
     NSDateComponents *componentsA = [[NSDate calendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:dateA];
     NSDateComponents *componentsB = [[NSDate calendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:dateB];
     

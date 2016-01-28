@@ -30,11 +30,14 @@
 @property (nonatomic,strong) ZMDateModel *minDate;
 @property (nonatomic,strong) ZMDateModel *maxDate;
 @property (nonatomic,assign) NSInteger bottomPading;
+@property (nonatomic,assign) BOOL isScrolling;
+@property (nonatomic,assign) BOOL disableToday;
 
 @property (nonatomic,assign) id <ZMCalendarDataSource> dataSource;
 @property (nonatomic,assign) id <ZMCalendarDelegate> delegate;
 
 - (void)reload;
+- (void)reloadLeftRight;
 - (void)next;
 - (void)previous;
 - (void)today;

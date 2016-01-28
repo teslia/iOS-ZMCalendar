@@ -12,7 +12,7 @@
 @interface ZMDayCell : UIControl
 
 @property (strong, nonatomic) ZMDateModel *model;
-@property (assign, nonatomic) BOOL forceSelected;
+@property (assign, nonatomic) BOOL disableToday;
 
 -(void)reload;
 

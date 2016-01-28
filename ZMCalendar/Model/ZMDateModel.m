@@ -57,7 +57,7 @@
 
 -(NSDateFormatter *)_dateFormatter{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    //dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"ja_JP"];
+    dateFormatter.locale = [NSLocale systemLocale];
     dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     dateFormatter.dateFormat = @"yyyyMMddHHmm";
     return dateFormatter;

@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 //// Calendar //////////////////////////////////////////////////
 @property (weak, nonatomic) IBOutlet UIScrollView *calendarScrollView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actibityIndicator;
 @property (strong, nonatomic) ZMCalendarMonthView *leftCalendarView;
 @property (strong, nonatomic) ZMCalendarMonthView *centerCalendarView;
 @property (strong, nonatomic) ZMCalendarMonthView *rightCalendarView;
@@ -28,8 +29,6 @@
 @property (strong, nonatomic) NSDate *currentDate;
 
 @property (assign,nonatomic) CGFloat beforeOffset;
-@property (assign,nonatomic) BOOL isFristRun;
-@property (assign,nonatomic) BOOL disableTodayFlag;
 
 @end
 
@@ -38,21 +37,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.isFristRun = YES;
-    self.beforeOffset = self.view.width;
+    [self initCurrentDate];
+    [self loadStyle];
+    
+    [self performSelector:@selector(viewWillLoad) withObject:self afterDelay:0.001];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    if (_isFristRun) {
-        [self initView];
-        [self loadStyle];
-        self.isFristRun = NO;
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewWillLoad {
+    [self initView];
 }
 
 - (void)loadStyle{
@@ -61,38 +53,52 @@
 }
 
 - (void)initView{
-
+    
     [self.view layoutIfNeeded];
     
     self.calendarScrollView.contentSize = CGSizeMake(self.view.width * 3, _calendarScrollView.height);
     
-    [self initCurrentDate];
-    
     // Make calendar view //////////////
     
     self.leftCalendarView = [[ZMCalendarMonthView alloc]initWithFrame: CGRectMake(0, 0, self.view.width, _calendarScrollView.height - _bottomPading)
-                                                                     dateModel:[ZMDateModel dateModelWithNSDate:[_currentDate dayInThePreviousMonth]]];
+                                                            dateModel:[ZMDateModel dateModelWithNSDate:[_currentDate dayInThePreviousMonth]]];
+    self.leftCalendarView.disableToday = _disableToday;
     self.leftCalendarView.delegate = self;
     self.leftCalendarView.dataSource = self;
+    [self.leftCalendarView initView];
     
     self.centerCalendarView = [[ZMCalendarMonthView alloc]initWithFrame: CGRectMake(self.view.width, 0, self.view.width, _calendarScrollView.height - _bottomPading)
-                                                            dateModel:[ZMDateModel dateModelWithNSDate:_currentDate]];
+                                                              dateModel:[ZMDateModel dateModelWithNSDate:_currentDate]];
+    self.centerCalendarView.disableToday = _disableToday;
     self.centerCalendarView.delegate = self;
     self.centerCalendarView.dataSource = self;
+    [self.centerCalendarView initView];
     
     self.rightCalendarView = [[ZMCalendarMonthView alloc]initWithFrame: CGRectMake(self.view.width * 2, 0, self.view.width, _calendarScrollView.height - _bottomPading)
-                                                            dateModel:[ZMDateModel dateModelWithNSDate:[_currentDate dayInTheFollowingMonth]]];
+                                                             dateModel:[ZMDateModel dateModelWithNSDate:[_currentDate dayInTheFollowingMonth]]];
+    self.rightCalendarView.disableToday = _disableToday;
     self.rightCalendarView.delegate = self;
     self.rightCalendarView.dataSource = self;
+    [self.rightCalendarView initView];
     
     //////////////////////////////////
     
+    if (self.minDate && [NSDate date:[self.minDate getNSDate] isTheSameMonthThan:_currentDate]) {
+        // 回滚到最左
+        self.leftCalendarView.model = [ZMDateModel dateModelWithNSDate:_currentDate];
+        self.centerCalendarView.model = [ZMDateModel dateModelWithNSDate:[_currentDate dayInTheFollowingMonth]];
+    }else{
+        // 设定初始位置到中央
+        [self.calendarScrollView setContentOffset:CGPointMake(_calendarScrollView.width, 0)];
+    }
+
     [self.calendarScrollView addSubview:_leftCalendarView];
     [self.calendarScrollView addSubview:_centerCalendarView];
     [self.calendarScrollView addSubview:_rightCalendarView];
     
-    // 设定初始位置到中央
-    [self.calendarScrollView setContentOffset:CGPointMake(_calendarScrollView.width, 0)];
+    
+    self.beforeOffset = self.calendarScrollView.contentOffset.x;
+    [self.actibityIndicator removeFromSuperview];
 }
 
 - (void)nextMonth{
@@ -162,7 +168,7 @@
 -(void)loadDateLabel{
     NSString *dateStr = [_currentDate stringFromDate:_currentDate];
     NSArray *dateArr = [dateStr componentsSeparatedByString:@"-"];
-    self.dateLabel.text = [NSString stringWithFormat:@"%@ 年 %@ 月",dateArr[0],dateArr[1]];
+    self.dateLabel.text = [NSString stringWithFormat:@"%@ 年 %ld 月",dateArr[0],((NSString *)dateArr[1]).integerValue];
 }
 
 -(void)removeSelectedTag{
@@ -171,44 +177,65 @@
     [self.rightCalendarView removeAllSelected];
 }
 
+-(void)setCanDisplayToday:(BOOL)canDisplay{
+    self.leftCalendarView.disableToday = !canDisplay;
+    self.centerCalendarView.disableToday = !canDisplay;
+    self.rightCalendarView.disableToday = !canDisplay;
+}
+
 #pragma mark - Actions
 - (IBAction)nextButtonAction:(id)sender {
+    [self lockButton];
     [self next];
 }
 - (IBAction)previousButtonAction:(id)sender {
+    [self lockButton];
     [self previous];
 }
 
 #pragma mark - Public methond
 
 -(void)reload{
-
-    [self.leftCalendarView reloadAll];
-
-    [self.rightCalendarView reloadAll];
-
     [self.centerCalendarView reloadAll];
+}
+
+- (void)reloadLeftRight{
+    [self.rightCalendarView reloadAll];
+    [self.leftCalendarView reloadAll];
 }
 
 - (void)next{
     if (!_calendarScrollView.isDecelerating) {
-        [self.calendarScrollView setContentOffset:CGPointMake(_calendarScrollView.width * 2,0) animated:YES];
+        [self.calendarScrollView setContentOffset:CGPointMake(_calendarScrollView.width * 2,0) animated:NO];
+        [self scrollViewDidEndDecelerating:_calendarScrollView];
     }
 }
 
 - (void)previous{
     if (!_calendarScrollView.isDecelerating) {
-        [self.calendarScrollView setContentOffset:CGPointZero animated:YES];
+        [self.calendarScrollView setContentOffset:CGPointZero animated:NO];
+        [self scrollViewDidEndDecelerating:_calendarScrollView];
     }
 }
 
 - (void)today{
-    self.disableTodayFlag = NO;
+    [self setCanDisplayToday:YES];
     [self removeSelectedTag];
     [self initCurrentDate];
     [self.calendarScrollView setContentOffset:CGPointMake(_calendarScrollView.width, 0) animated:YES];
     [self refrashCurrentCalendarData];
     [self refrashCalendarData];
+}
+
+-(void)lockButton{
+    self.preButton.enabled = NO;
+    self.nextButton.enabled = NO;
+    [self performSelector:@selector(unlockButton) withObject:self afterDelay:0.3];
+}
+
+-(void)unlockButton{
+    self.preButton.enabled = YES;
+    self.nextButton.enabled = YES;
 }
 
 #pragma mark - Private
@@ -218,7 +245,7 @@
     if (self.minDate &&
         isLeft &
         [NSDate date:[_currentDate dayInThePreviousMonth] isEqualOrBefore:[self.minDate getNSDate]]){
-
+        
         self.currentDate = [self.minDate getNSDate];
         
         return NO;
@@ -233,7 +260,7 @@
         [NSDate date:[_currentDate dayInTheFollowingMonth] isEqualOrAfter:[self.maxDate getNSDate]]){
         
         self.currentDate = [self.maxDate getNSDate];
-       
+        
         return NO;
     }
     return YES;
@@ -244,19 +271,16 @@
 -(void)calendarLoadDayCell:(ZMDayCell *)dayCell dateModel:(ZMDateModel *)dateModel{
     // 对应： -(void)calendarLoadDayCell:(ZMDayCell *)dayCell dateModel:(ZMDateModel *)dateModel;
     if (self.dataSource) {
-        dateModel.disableToday = _disableTodayFlag;
         [self.dataSource calendarLoadDayCell:dayCell dateModel:dateModel];
     }
 }
 
 -(void)calendarDayDidSelected:(ZMDateModel *)dateModel dayCell:(ZMDayCell *)dayCell{
     // 对应： -(void)calendarDayDidSelected:(ZMDateModel *)dateModel dayCell:(ZMDayCell *)dayCell;
+    [self setCanDisplayToday:NO];
     if (self.delegate) {
-
-        self.disableTodayFlag = YES;
-        
         [self.delegate calendarDayDidSelected:dateModel dayCell:dayCell];
-        [self reload];
+        [self.centerCalendarView reloadAll];
     }
 }
 
@@ -270,7 +294,13 @@
 #pragma mark - ScrollView delegate
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    scrollView.scrollEnabled = NO;
+    self.isScrolling = YES;
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if (_isScrolling) {
+        scrollView.contentOffset = CGPointMake(_beforeOffset, 0);
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -280,7 +310,7 @@
     
     // 滚动到底反弹，不做任何处理。
     if (right == left) {
-        scrollView.scrollEnabled = YES;
+        self.isScrolling = NO;
         return;
     }
     
@@ -298,7 +328,7 @@
         
         [self loadDateLabel];
         [_centerCalendarView reloadAll];
-        scrollView.scrollEnabled = YES;
+        self.isScrolling = NO;
         _beforeOffset = scrollView.width;
         return;
     }
@@ -306,7 +336,7 @@
     if (![self _canPrevious:left] ||
         ![self _canNext:right]) {
         
-        scrollView.scrollEnabled = YES;
+        self.isScrolling = NO;
         self.beforeOffset = scrollView.contentOffset.x;
         [self loadDateLabel];
         [self reload];
@@ -326,7 +356,7 @@
     [self loadDateLabel];
     [self calendarMonthDidChanged];
     
-    scrollView.scrollEnabled = YES;
+    self.isScrolling = NO;
     self.beforeOffset = scrollView.contentOffset.x;
 }
 

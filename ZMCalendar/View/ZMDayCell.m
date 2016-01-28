@@ -26,7 +26,7 @@
         // Fix Performance Issues
         self.layer.shouldRasterize = YES;
         self.layer.rasterizationScale = [UIScreen mainScreen].scale;
-        
+
     }
     return self;
 }
@@ -38,62 +38,75 @@
 }
 
 -(void)reload{
+
+    self.dayLabel.text = _model.day;
     
-    __weak typeof(self) wself = self;
-    dispatch_async(dispatch_get_main_queue(),^{
-        
-        wself.dayLabel.text = _model.day;
-        
-        // Defalut setting
-        {
-            wself.dayLabel.textColor = [UIColor darkGrayColor];
-            wself.dayLabel.alpha = 1;
-            wself.dayLabel.layer.masksToBounds = YES;
-            wself.dayLabel.layer.cornerRadius = 0;
-            wself.dayLabel.layer.borderWidth = 1;
-            wself.dayLabel.layer.borderColor = [UIColor clearColor].CGColor;
-            wself.dayLabel.backgroundColor = [UIColor whiteColor];
-            NSInteger size = 30;
-            if (self.height <= 30) {
-                size = self.height - 2;
-            }
-            wself.dayLabel.frame = CGRectMake(self.width / 2 - size / 2, self.height / 2 - size / 2, size, size);
-        }
-        
-        // Check weekend
-        if (_model.weekDay == 0) {
-            // 星期天
-            wself.dayLabel.textColor = [UIColor colorWith8BitRed:238 green:41 blue:118 alpha:1];
-        }
-        
-        if (_model.weekDay == 6) {
-            // 星期六
-            wself.dayLabel.textColor = [UIColor colorWith8BitRed:36 green:176 blue:208 alpha:1];
-        }
-        
-        if (!_model.isInCurrentMonth) {
-            wself.dayLabel.alpha = 0.5;
-        }
-        
-        if (_model.isInCurrentMonth && _model.isEventDay) {
-            wself.dayLabel.layer.cornerRadius = wself.dayLabel.height / 2;
-            wself.dayLabel.layer.borderColor = [UIColor colorWith8BitRed:238 green:41 blue:118 alpha:1].CGColor;
-        }
-        
-        if (_model.isInCurrentMonth && ((_model.isSelected || _forceSelected) || (!_model.disableToday  && _model.isToday) ) ) {
-            wself.dayLabel.layer.cornerRadius = wself.dayLabel.height / 2;
-            wself.dayLabel.textColor = [UIColor whiteColor];
-            wself.dayLabel.backgroundColor = [UIColor colorWith8BitRed:238 green:41 blue:118 alpha:1];
-        }
-    });
+    // Defalut setting
+    {
+        self.dayLabel.textColor = [UIColor darkGrayColor];
+        self.dayLabel.alpha = 1;
+        self.dayLabel.layer.masksToBounds = YES;
+        self.dayLabel.layer.cornerRadius = 0;
+        self.dayLabel.layer.borderWidth = 0;
+        self.dayLabel.layer.borderColor = [UIColor clearColor].CGColor;
+        self.dayLabel.backgroundColor = [UIColor whiteColor];
+        //self.dayLabel.clipsToBounds = YES;
+    }
+    
+    // Check weekend
+    if (_model.weekDay == 0) {
+        // 星期天
+        self.dayLabel.textColor = [UIColor colorWith8BitRed:238 green:41 blue:118 alpha:1];
+    }
+    
+    if (_model.weekDay == 6) {
+        // 星期六
+        self.dayLabel.textColor = [UIColor colorWith8BitRed:36 green:176 blue:208 alpha:1];
+    }
+    
+    if (!_model.isInCurrentMonth) {
+        self.dayLabel.alpha = 0.2;
+    }
+    
+    if (_model.isInCurrentMonth && _model.isEventDay) {
+        self.dayLabel.layer.cornerRadius = self.dayLabel.height / 2;
+        self.dayLabel.layer.borderWidth = 1;
+        self.dayLabel.layer.borderColor = [UIColor colorWith8BitRed:238 green:41 blue:118 alpha:1].CGColor;
+    }
+    
+    if (_model.isInCurrentMonth && ( _model.isSelected || (!self.disableToday && _model.isToday) ) ) {
+        self.dayLabel.layer.cornerRadius = self.dayLabel.height / 2;
+        self.dayLabel.textColor = [UIColor whiteColor];
+        self.dayLabel.backgroundColor = [UIColor colorWith8BitRed:238 green:41 blue:118 alpha:1];
+    }
+
 }
+
 
 -(UILabel *)dayLabel{
     if (!_dayLabel) {
-        _dayLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.width / 2 - 15, self.height / 2 - 15, 30, 30)];
+        
+        // Build
+        _dayLabel = [[UILabel alloc]init];
         _dayLabel.textAlignment = NSTextAlignmentCenter;
         _dayLabel.font = [UIFont systemFontOfSize:15];
         [self addSubview:_dayLabel];
+        
+        // Constraints
+        [_dayLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+        
+        NSLayoutConstraint *centerXConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_dayLabel attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
+        
+        NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_dayLabel attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+        
+        NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:_dayLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1 constant:24];
+        
+        NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:_dayLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:24];
+        
+        [self addConstraints:[NSArray arrayWithObjects:centerXConstraint,centerYConstraint,widthConstraint,heightConstraint,nil]];
+        
+        [self layoutIfNeeded];
+        
     }
     return _dayLabel;
 }
